@@ -18,12 +18,14 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     :param birthday: 생년월일 (형식: YYYY-MM-DD)
     :return: 생년월일 및 만나이를 포함한 JSON 응답
     """
-    random_age = random.randint(0, 100)
-    today = date.today()
-    
+     today = date.today()
+     birth_date = datetime.strptime(birthday, "%Y-%m-%d").date()
+     # 계산
+     age = today.year - birth_date.year
+     # TODO 생일 지난 여부 관련 로직 추가 개발 필
     return {
             "birthday": birthday,
-            "age": str(27),
+            "age": str(age),
             "basedate": str(today),
             "message": "Age calculated successfully!"
             }
