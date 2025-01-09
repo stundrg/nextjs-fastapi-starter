@@ -23,8 +23,6 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     # 계산
     age = today.year - birth_date.year
     if (today.month,today.day) < (birth_date.month,birth_date.day):
-        age -= 2
-    else:
         age -= 1
      # TODO 생일 지난 여부 관련 로직 추가 개발 필
     return {
