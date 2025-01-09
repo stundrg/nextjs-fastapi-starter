@@ -39,5 +39,5 @@ zodiac = get_zodiac(birth_date.year)
             "age": str(age),
             "basedate": str(today),
             "message": "Age calculated successfully!"
-            "zodiac" : zodiac,
+            "zodiac" : zodiac
             }
