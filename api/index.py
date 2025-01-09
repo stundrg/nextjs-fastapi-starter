@@ -22,7 +22,7 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     birth_date = datetime.strptime(birthday, "%Y-%m-%d").date()
     # 계산
     age = today.year - birth_date.year
-    if (today.month,today.day) < (birth_day.month,birth_day.day):
+    if (today.month,today.day) < (birth_date.month,birth_date.day):
         age -= 2
     else:
         age -= 1
