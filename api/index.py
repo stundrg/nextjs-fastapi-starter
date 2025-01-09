@@ -25,15 +25,15 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     if (today.month,today.day) < (birth_date.month,birth_date.day):
         age -= 1
     
-def get_zodiac(year):
-    zodiac_animals = [
-            "🐀 쥐","🐂 소","🐅 호랑이","🐇 토끼","🐉 용","🐍 뱀","🐎 말","🐐 양","🐒 원숭이","🐓 닭","🐕 개","🐖 돼지"
-            ]
-    base_year = 2020 # 기준 점 : 쥐띠의 헤
-    index = (birth_date.year - base_year)%12
-    return zodiac_animals[index]
+    def get_zodiac(year):
+        zodiac_animals = [
+                 "🐀 쥐","🐂 소","🐅 호랑이","🐇 토끼","🐉 용","🐍 뱀","🐎 말","🐐 양","🐒 원숭이","🐓 닭","🐕 개","🐖 돼지"
+        ]
+        base_year = 2020 # 기준 점 : 쥐띠의 헤
+        index = (year - base_year)%12
+        return zodiac_animals[index]
 
-zodiac = get_zodiac(birth_date.year)
+    zodiac = get_zodiac(birth_date.year)
     return {
             "birthday": birthday,
             "age": str(age),
