@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from datetime import datetime, date
 from typing import Dict
 import random
@@ -20,6 +20,10 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     """
     today = date.today()
     birth_date = datetime.strptime(birthday, "%Y-%m-%d").date()
+    if birth_date > today:
+        return {"age": "넌 미래에서 왔니?"}
+        
+
     # 계산
     age = today.year - birth_date.year
     if (today.month,today.day) < (birth_date.month,birth_date.day):
@@ -27,7 +31,7 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     
     def get_zodiac(year):
         zodiac_animals = [
-                 "🐀 쥐","🐂 소","🐅 호랑이","🐇 토끼","🐉 용","🐍 뱀","🐎 말","🐐 양","🐒 원숭이","🐓 닭","🐕 개","🐖 돼지"
+                 "(🐀 쥐)","(🐂 소)","(🐅 호랑이)","(🐇 토끼)","(🐉 용)","(🐍 뱀)","(🐎 말)","(🐐 양)","(🐒 원숭이)","(🐓 닭)","(🐕 개)","(🐖 돼지)"
         ]
         base_year = 2020 # 기준 점 : 쥐띠의 헤
         index = (year - base_year)%12
