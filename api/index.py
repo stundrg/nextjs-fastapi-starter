@@ -21,7 +21,7 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     today = date.today()
     birth_date = datetime.strptime(birthday, "%Y-%m-%d").date()
     if birth_date > today:
-        return {"message" : "넌 미래에서 왔니?", "birthday": birthday}
+        return {"age": "넌 미래에서 왔니?"}
         
 
     # 계산
