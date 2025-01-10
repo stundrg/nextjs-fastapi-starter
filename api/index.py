@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from datetime import datetime, date
 from typing import Dict
 import random
+import korean_age_calculator as kac
 
 ### Create FastAPI instance with custom docs and openapi url
 app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
@@ -38,9 +39,12 @@ def age_calculator(birthday: str) -> Dict[str, str]:
         return zodiac_animals[index]
 
     zodiac = get_zodiac(birth_date.year)
+    kage = kac.how_korean_age(year_of_birth=birth_date.year)
     return {
             "birthday": birthday,
-            "age": str(age),
+            "age": str(age) + "한국 나이: " + str(kage),
+            "kage" : str(kage),
+            "speaker": "홍길동",
             "basedate": str(today),
             "message": "Age calculated successfully!",
             "zodiac" : zodiac
