@@ -23,7 +23,7 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     if birth_date > today:
         raise HTTPException(
             status_code=400,
-            detail="The birth date cannot be in the future."
+            detail="넌 미래에서 왔니?"
         )
 
     # 계산
