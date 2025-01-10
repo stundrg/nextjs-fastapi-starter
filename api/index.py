@@ -21,10 +21,8 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     today = date.today()
     birth_date = datetime.strptime(birthday, "%Y-%m-%d").date()
     if birth_date > today:
-        raise HTTPException(
-            status_code=400,
-            detail="넌 미래에서 왔니?"
-        )
+        return {"message" : "넌 미래에서 왔니?", "birthday": brithday}
+        
 
     # 계산
     age = today.year - birth_date.year
