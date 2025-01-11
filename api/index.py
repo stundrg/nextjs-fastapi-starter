@@ -2,6 +2,8 @@ from fastapi import FastAPI, HTTPException
 from datetime import datetime, date
 from typing import Dict
 import random
+import korean_age_calculator as kac
+import sys
 
 ### Create FastAPI instance with custom docs and openapi url
 app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
@@ -31,17 +33,34 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     
     def get_zodiac(year):
         zodiac_animals = [
-                 "(🐀 쥐)","(🐂 소)","(🐅 호랑이)","(🐇 토끼)","(🐉 용)","(🐍 뱀)","(🐎 말)","(🐐 양)","(🐒 원숭이)","(🐓 닭)","(🐕 개)","(🐖 돼지)"
+                 "(🐀 쥐)","(🐂 소)","(🐅 호랑이)","(🐇 토끼)","(🐉 용)","(🐍 뱀)","(🐎 말)","(🐐 양)","(🐒 원숭이)","(닭)","(🐕 개)","(🐖 돼지)"
         ]
         base_year = 2020 # 기준 점 : 쥐띠의 헤
         index = (year - base_year)%12
         return zodiac_animals[index]
-
+    def getStudent():
+        studentlist = [
+            "안재영", "조민규", "강현룡", "백지원", "서민혁",
+            "권오준", "조성근", "전희진", "배형균", "민경국"
+        ]
+        return random.choice(studentlist)
+    
+    student = getStudent()
     zodiac = get_zodiac(birth_date.year)
+    kage = kac.how_korean_age(year_of_birth=birth_date.year)
+
+
+
+    # python 버전 추가
+    version = sys.version
     return {
             "birthday": birthday,
-            "age": str(age),
+            "age": str(age) + " 한국 나이: " + str(kage),
+            "kage" : str(kage),
+            "speaker": "홍길동",
             "basedate": str(today),
             "message": "Age calculated successfully!",
+            "version": version,
+            "student": student,
             "zodiac" : zodiac
             }
