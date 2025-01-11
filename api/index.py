@@ -38,7 +38,11 @@ def age_calculator(birthday: str) -> Dict[str, str]:
         base_year = 2020 # 기준 점 : 쥐띠의 헤
         index = (year - base_year)%12
         return zodiac_animals[index]
+    def pickStudent():
+        studentlist = ["안재영","조민규", "강현룡", "백지원", "서민혁", "권오준", "조성근", "전희진", "배형균", "민경국"]
+        randomNumber = random.randint(0, len(studentlist)-1)
 
+    student = studentlist[randomNumber]
     zodiac = get_zodiac(birth_date.year)
     kage = kac.how_korean_age(year_of_birth=birth_date.year)
 
@@ -52,5 +56,6 @@ def age_calculator(birthday: str) -> Dict[str, str]:
             "basedate": str(today),
             "message": "Age calculated successfully!",
             "version": version,
+            "student": student,
             "zodiac" : zodiac
             }
