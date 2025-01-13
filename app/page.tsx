@@ -60,9 +60,17 @@ export default function Home() {
 
         {age !== null && (
           <div className="mt-4 text-center text-green-600 font-semibold">
-            Your age: {age} 
-	    Your Korean age : {kage}
-	    Your Zodiac : {zodiac}
+            Your age: {age}
+          </div>
+        )}
+	 {kage !== null && (
+          <div className="mt-4 text-center text-blue-600 font-semibold">
+            Your Korean age : {kage}
+          </div>
+        )}
+	{zodiac !== null && (
+          <div className="mt-4 text-center text-pink-600 font-semibold">
+            Your zodiac: {zodiac}
           </div>
         )}
         {error && (
