@@ -63,8 +63,6 @@ export default function Home() {
             Your age: {age} 
 	    Your Korean age : {kage}
 	    Your Zodiac : {zodiac}
-	    Random role : {student}
-
           </div>
         )}
         {error && (
