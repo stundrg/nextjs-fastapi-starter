@@ -61,7 +61,7 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     version = sys.version
     return {
             "birthday": birthday,
-            "age": str(age) + " 한국 나이: " + str(kage),
+            "age": str(age) ,
             "kage" : str(kage),
             "speaker": "홍길동",
             "basedate": str(today),
@@ -77,7 +77,7 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     {
     "os-name": get_os_pretty_name()
             }
-def get_os_pretty_name():
+def get_os_pretty_name() -> str: 
     with open('/etc/os-release', 'r') as f:
         for line in f:
             if line.startswith('PRETTY_NAME='):

@@ -13,6 +13,7 @@ $ pyenv global
 3.10.12
 # $ python -m venv venv
 $ source venv/bin/activate
+# $ pip install -r requirements.txt
 $ uvicorn api.index:app --reload
 ```
 ### Contribuing
