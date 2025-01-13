@@ -48,10 +48,9 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     student = getStudent()
     zodiac = get_zodiac(birth_date.year)
     kage = kac.how_korean_age(year_of_birth=birth_date.year)
+   
 
-
-
-    # python 버전 추가
+   # python 버전 추가
     version = sys.version
     return {
             "birthday": birthday,
