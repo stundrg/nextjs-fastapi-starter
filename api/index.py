@@ -66,7 +66,7 @@ def age_calculator(birthday: str) -> Dict[str, str]:
             "speaker": "홍길동",
             "basedate": str(today),
             "message": "Age calculated successfully!",
-            "os_info": os_info,
+            "os_info": str(os_info),
             "version": version,
             "student": student,
             "zodiac" : zodiac
