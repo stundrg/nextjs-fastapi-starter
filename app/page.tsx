@@ -7,11 +7,13 @@ import { useState } from "react";
 export default function Home() {
   const [birthday, setBirthday] = useState("");
   const [age, setAge] = useState<number | null>(null);
+  const [kage, setKage] = useState<number | null>(null);1
   const [error, setError] = useState<string | null>(null);
   const [zodiac, setZodiac] = useState<string | null>(null);
   const handleCalculateAge = async () => {
     setError(null);
     setAge(null);
+    setKage(null);
 
     if (!birthday) {
       setError("Please enter your birthday.");
@@ -25,6 +27,7 @@ export default function Home() {
       if (response.ok) {
         setAge(data.age);
 	setZodiac(data.zodiac);
+	setKage(data.kage);
       } else {
         setError(data.error || "Failed to calculate age.");
       }
@@ -58,6 +61,16 @@ export default function Home() {
         {age !== null && (
           <div className="mt-4 text-center text-green-600 font-semibold">
             Your age: {age} / Your Zodiac :{zodiac}
+          </div>
+        )}
+	{kage !== null && (
+          <div className="mt-4 text-center text-blue-600 font-semibold">
+            Your Korean age : {kage}
+          </div>
+        )}
+        {zodiac !== null && (
+          <div className="mt-4 text-center text-pink-600 font-semibold">
+            Your zodiac: {zodiac}
           </div>
         )}
         {error && (
