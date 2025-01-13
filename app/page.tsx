@@ -27,7 +27,7 @@ export default function Home() {
       if (response.ok) {
         setAge(data.age);
 	setZodiac(data.zodiac);
-	setKage(data.Kage);
+	setKage(data.kage);
       } else {
         setError(data.error || "Failed to calculate age.");
       }
