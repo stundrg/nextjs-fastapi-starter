@@ -13,6 +13,7 @@ import platform
 
 load_dotenv()
 
+
 DB_CONFIG = {
     "user": os.getenv("POSTGRES_USER"),
     "dbname": os.getenv("POSTGRES_DATABASE"),
@@ -86,25 +87,13 @@ def age_calculator(birthday: str) -> Dict[str, str]:
             "version": version,
             "student": student,
             "zodiac" : zodiac,
-            "postgres_user": os.getenv{"POSTGRES_USER"}
+            "postgres_user": os.getenv("POSTGRES_USER")
             }
 
-'''
-    return
-    {
-    "os-name": get_os_pretty_name()
-            }
-def get_os_pretty_name() -> str: 
-    with open('/etc/os-release', 'r') as f:
-        for line in f:
-            if line.startswith('PRETTY_NAME='):
-                return line.split('=')[1].replace('\n', '').strip('"')
-    return None
-    '''
 @app.get("/api/py/select_all")
 def select_all():
     with psycopg.connect(**DB_CONFIG,row_factory=dict_row) as conn:
-        cur = conn.execute("select * from view_select_all;")
+        cur = conn.execute("select * from view_select_all")
         rows = cur.fetchall()
         return rows
     
