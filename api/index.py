@@ -1,10 +1,27 @@
 from fastapi import FastAPI, HTTPException
 from datetime import datetime, date
 from typing import Dict
+from psycopg.rows import dict_row
+import os
+import pandas as pd
 import random
+import psycopg
 import korean_age_calculator as kac
 import sys
+from dotenv import load_dotenv
 import platform
+
+load_dotenv()
+
+
+DB_CONFIG = {
+    "user": os.getenv("POSTGRES_USER"),
+    "dbname": os.getenv("POSTGRES_DATABASE"),
+    "password": os.getenv("POSTGRES_PASSWORD"),
+    "host": os.getenv("POSTGRES_HOST"),
+    "port": os.getenv("DB_PORT", "5432")
+}
+
 
 ### Create FastAPI instance with custom docs and openapi url
 app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
@@ -69,18 +86,15 @@ def age_calculator(birthday: str) -> Dict[str, str]:
             "os_info": str(os_info),
             "version": version,
             "student": student,
-            "zodiac" : zodiac
+            "zodiac" : zodiac,
+            "postgres_user": os.getenv("POSTGRES_USER")
             }
 
-'''
-    return
-    {
-    "os-name": get_os_pretty_name()
-            }
-def get_os_pretty_name() -> str: 
-    with open('/etc/os-release', 'r') as f:
-        for line in f:
-            if line.startswith('PRETTY_NAME='):
-                return line.split('=')[1].replace('\n', '').strip('"')
-    return None
-    '''
+@app.get("/api/py/select_all")
+def select_all():
+    with psycopg.connect(**DB_CONFIG,row_factory=dict_row) as conn:
+        cur = conn.execute("select * from view_select_all")
+        rows = cur.fetchall()
+        return rows
+    
+# http://127.0.0.1:8000/api/py/docs
