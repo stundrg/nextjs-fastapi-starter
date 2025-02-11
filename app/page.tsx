@@ -60,7 +60,7 @@ export default function Home() {
 
         {age !== null && (
           <div className="mt-4 text-center text-green-600 font-semibold">
-            Your age: {age} / Your Zodiac :{zodiac}
+            Your age: {age}
           </div>
         )}
 	{kage !== null && (

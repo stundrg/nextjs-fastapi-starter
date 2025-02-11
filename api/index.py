@@ -34,7 +34,7 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     
     def get_zodiac(year):
         zodiac_animals = [
-                 "(🐀 쥐)","(🐂 소)","(🐅 호랑이)","(🐇 토끼)","(🐉 용)","(🐍 뱀)","(🐎 말)","(🐐 양)","(🐒 원숭이)","(닭)","(🐕 개)","(🐖 돼지)"
+                 "(🐀 쥐)","(🐂 소)","(🐅 호랑이)","(🐇 토끼)","(🐉 용)","(🐍 뱀)","(🐎 말)","(🐐 양)","(🐒 원숭이)","(🐓 닭)","(🐕 개)","(🐖 돼지)"
         ]
         base_year = 2020 # 기준 점 : 쥐띠의 헤
         index = (year - base_year)%12
@@ -61,7 +61,7 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     version = sys.version
     return {
             "birthday": birthday,
-            "age": str(age) + " 한국 나이: " + str(kage),
+            "age": str(age) ,
             "kage" : str(kage),
             "speaker": "홍길동",
             "basedate": str(today),
@@ -77,7 +77,7 @@ def age_calculator(birthday: str) -> Dict[str, str]:
     {
     "os-name": get_os_pretty_name()
             }
-def get_os_pretty_name():
+def get_os_pretty_name() -> str: 
     with open('/etc/os-release', 'r') as f:
         for line in f:
             if line.startswith('PRETTY_NAME='):
