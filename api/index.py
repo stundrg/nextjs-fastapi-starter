@@ -1,11 +1,26 @@
 from fastapi import FastAPI, HTTPException
 from datetime import datetime, date
 from typing import Dict
+from psycopg.rows import dict_row
+import os
 import pandas as pd
 import random
+import psycopg
 import korean_age_calculator as kac
 import sys
+from dotenv import load_dotenv
 import platform
+
+load_dotenv()
+
+DB_CONFIG = {
+    "user" : os.getenv("DB_USERNAME"),
+    "dbname" : os.getenv("DB_NAME"),
+    "password" : os.getenv("DB_PASSWORD"),
+    "host" : os.getenv("DB_HOST"),
+    "port" : os.getenv("DB_PORT")
+}
+
 
 ### Create FastAPI instance with custom docs and openapi url
 app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
@@ -87,18 +102,9 @@ def get_os_pretty_name() -> str:
     '''
 @app.get("/api/py/select_all")
 def select_all():
-    # pandas dataframe을 임의로 하나 만들어서 10분 가이드
-    # 임의로 만든 dataframe 을 아래와 같은 형식으로 리턴
-    dt = pd.date_range('20130101', periods=6)
-    # df.to_dict()
-    # next -> DB 에서 읽어와서 DataFrame 으로 변환 후 아래와 같은 형식으로 리턴
-    import json
-    json_data = '''
-    [
-        {"id":1, "name": "Kim"},
-        {"id":2, "name": "Kang"}
-    ]
-    '''
-    data = json.loads(json_data)
-    df = pd.DataFrame(data)
-    return df.to_dict(orient = "records")
+    with psycopg.connect(**DB_CONFIG,row_factory=dict_row) as conn:
+        cur = conn.execute("select * from view_select_all;")
+        rows = cur.fetchall()
+        return rows
+    
+# http://127.0.0.1:8000/api/py/docs
