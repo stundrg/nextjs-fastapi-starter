@@ -14,11 +14,11 @@ import platform
 load_dotenv()
 
 DB_CONFIG = {
-    "user" : os.getenv("DB_USERNAME"),
-    "dbname" : os.getenv("DB_NAME"),
-    "password" : os.getenv("DB_PASSWORD"),
-    "host" : os.getenv("DB_HOST"),
-    "port" : os.getenv("DB_PORT")
+    "user": os.getenv("POSTGRES_USER"),
+    "dbname": os.getenv("POSTGRES_DATABASE"),
+    "password": os.getenv("POSTGRES_PASSWORD"),
+    "host": os.getenv("POSTGRES_HOST"),
+    "port": os.getenv("DB_PORT", "5432")
 }
 
 
@@ -85,7 +85,8 @@ def age_calculator(birthday: str) -> Dict[str, str]:
             "os_info": str(os_info),
             "version": version,
             "student": student,
-            "zodiac" : zodiac
+            "zodiac" : zodiac,
+            "postgres_user": os.getenv{"POSTGRES_USER"}
             }
 
 '''
